@@ -11,6 +11,9 @@ class TableReader {
       String year = row.getString("year");
       String title = row.getString("title");
       String[] genre = row.getString("genre").split(",");
+      for(int j = 0; j < genre.length; j++){
+        genre[j] = genre[j].trim();
+      }
       float gross = row.getFloat("gross");
       Movie movie = new Movie(year, title, genre, gross);
       movies.add(movie);

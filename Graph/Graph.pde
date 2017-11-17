@@ -21,17 +21,16 @@ void setup() {
   for(Movie movie : movies) {
     Integer currYear = Integer.parseInt(movie.year);
     float tempMoviesPerYear = moviesPerYear.get(currYear) == null ? 0 : moviesPerYear.get(currYear);
-    moviesPerYear.put(currYear, tempMoviesPerYear + 1);
     if(!years.containsKey(currYear)){
         years.put(currYear, new Year(currYear.intValue()));
     }
     Year currYearObj = years.get(currYear);
     ArrayList<Genre> genres = currYearObj.genres;
-    
    
     for(int i = 0; i < genres.size(); i++) {
       Genre genre = genres.get(i);
       if(movie.hasGenre(genre.name)){
+        moviesPerYear.put(currYear, ++tempMoviesPerYear);
         genre.numMovies += 1f;
         genre.totalGross += movie.gross;
         genres.set(i, genre);
@@ -43,7 +42,12 @@ void setup() {
     years.put(currYear, currYearObj);
 
   }
-  
+  //for(Integer year : years.keySet()) {
+  //  Year currYear = years.get(year);
+  //  for(Genre genre : currYear.genres) {
+  //    System.out.println("The total gross for " + genre.name + " in " + year + " was " + genre.totalGross + " and the number of Movies was " + genre.numMovies);
+  //  }
+  //}
   timeParser = new TimeParser(1986); 
 }
 

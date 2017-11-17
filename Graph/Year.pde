@@ -1,5 +1,4 @@
 class Year {
-  //int x =50;
   final int year;
   HashMap<String, Integer> colors = new HashMap<String, Integer>();
   ArrayList<Genre> genres;
@@ -37,15 +36,12 @@ class Year {
     for(int i = 0; i < genreNames.length; i++) {
       genres.add(new Genre(genreNames[i], 0f, 0f, colors.get(genreNames[i])));
     }
-    System.out.println(genres);
      
   }
   
   public HashMap getColors(){
     return this.colors;
   }
-  
-
   
   void update(float maxGross, float numMovies) {
     float theta = 0;
@@ -55,6 +51,5 @@ class Year {
       theta = theta + arc_length;
     }
   }
-  
   
 }
