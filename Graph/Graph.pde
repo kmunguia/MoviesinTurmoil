@@ -4,16 +4,20 @@ ArrayList<Movie> movies;
 HashMap<Integer, Year> years;
 HashMap<Integer, Float> maxGrossPerYear;
 HashMap<Integer, Float> moviesPerYear;
+HashMap<String,Integer> genreColors;
 TimeParser timeParser;
+Integer x = 0;
+
 
 void setup() {
-  size(1000, 850);
+  size(1000, 1000);
   pixelDensity(displayDensity());
   tableReader = new TableReader();
-  movies = tableReader.loadData("IMDBbdata.csv");
+  movies = tableReader.loadData("IMDBdata.csv");
   years = new HashMap<Integer, Year>();
   maxGrossPerYear = new HashMap<Integer, Float>();
   moviesPerYear = new HashMap<Integer, Float>();
+  
   for(Movie movie : movies) {
     Integer currYear = Integer.parseInt(movie.year);
     float tempMoviesPerYear = moviesPerYear.get(currYear) == null ? 0 : moviesPerYear.get(currYear);
@@ -23,6 +27,8 @@ void setup() {
     }
     Year currYearObj = years.get(currYear);
     ArrayList<Genre> genres = currYearObj.genres;
+    
+   
     for(int i = 0; i < genres.size(); i++) {
       Genre genre = genres.get(i);
       if(movie.hasGenre(genre.name)){
@@ -35,13 +41,27 @@ void setup() {
     }
     currYearObj.genres = genres;
     years.put(currYear, currYearObj);
+
   }
+  
   timeParser = new TimeParser(1986); 
 }
 
 void draw() {
   background(255, 255, 255);
+  x =0;
   timeParser.update();
   Year yearToDraw = years.get(timeParser.year);
   yearToDraw.update(maxGrossPerYear.get(yearToDraw.year), moviesPerYear.get(yearToDraw.year));
+  
+  //Color lengend
+  genreColors = yearToDraw.getColors();
+  for(String key: genreColors.keySet()){
+    fill(genreColors.get(key));
+    rect(900,x+30, 10,10);
+    textSize(12);
+    fill(0,0,0);
+    text(key, 920, x+40);
+    x+=30;
+  }
 }
