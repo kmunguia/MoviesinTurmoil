@@ -14,7 +14,8 @@ class Genre {
    void update(int x, int y, float startTheta, float endTheta, float maxGross) {
      noStroke();
      fill(colour);
-     float gross = map(totalGross, 0, maxGross, 0, 600);
+     float averageGross = numMovies == 0 ? 0 : totalGross/numMovies;
+     float gross = map(averageGross, 0, maxGross, 0, 8000);
      arc(x, y, gross, gross, startTheta, endTheta);
    }
 }

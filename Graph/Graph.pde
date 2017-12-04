@@ -6,23 +6,28 @@ HashMap<Integer, Float> maxGrossPerYear;
 HashMap<Integer, Float> moviesPerYear;
 HashMap<String,Integer> genreColors;
 TimeParser timeParser;
+Button button;
 Integer x = 0;
 
 
 void setup() {
-  size(1000, 1000);
+  size(1000, 850);
   pixelDensity(displayDensity());
   tableReader = new TableReader();
   movies = tableReader.loadData("IMDBdata.csv");
   years = new HashMap<Integer, Year>();
   maxGrossPerYear = new HashMap<Integer, Float>();
   moviesPerYear = new HashMap<Integer, Float>();
+  String[] names = {"Action", "Adventure", "Animation", "Biography", "Comedy", "Crime",
+                    "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "History",
+                    "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi",
+                    "Sport", "Thriller", "War", "Western"};
   
   for(Movie movie : movies) {
     Integer currYear = Integer.parseInt(movie.year);
     float tempMoviesPerYear = moviesPerYear.get(currYear) == null ? 0 : moviesPerYear.get(currYear);
     if(!years.containsKey(currYear)){
-        years.put(currYear, new Year(currYear.intValue()));
+        years.put(currYear, new Year(currYear.intValue(), names));
     }
     Year currYearObj = years.get(currYear);
     ArrayList<Genre> genres = currYearObj.genres;
@@ -49,14 +54,19 @@ void setup() {
   //  }
   //}
   timeParser = new TimeParser(1986); 
+  button = new Button(0.15*width);
 }
 
 void draw() {
   background(255, 255, 255);
   x =0;
   timeParser.update();
+  button.update();
   Year yearToDraw = years.get(timeParser.year);
   yearToDraw.update(maxGrossPerYear.get(yearToDraw.year), moviesPerYear.get(yearToDraw.year));
+  
+  //Button Dragging
+  
   
   //Color lengend
   genreColors = yearToDraw.getColors();
