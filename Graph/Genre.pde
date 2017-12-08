@@ -11,11 +11,12 @@ class Genre {
      this.colour = colour;
    }
    
-   void update(int x, int y, float startTheta, float endTheta, float maxGross) {
+   void update(int x, int y, float startTheta, float endTheta, int year, boolean muted) {
      noStroke();
-     fill(colour);
+     fill(muted ? #999999 : colour, muted ? 140 : 255);
      float averageGross = numMovies == 0 ? 0 : totalGross/numMovies;
-     float gross = map(averageGross, 0, maxGross, 0, 8000);
+     float gross = map((float) Math.pow(0.97,(year-1985))*averageGross, 0, 130, 0, 600);
      arc(x, y, gross, gross, startTheta, endTheta);
    }
+   
 }
