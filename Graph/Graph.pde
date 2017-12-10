@@ -9,6 +9,8 @@ Integer x = 0;
 Boolean mouseOnGenre = false;
 String label;
 Slider slider;
+protected ArrayList<Integer> yearNoPic = new ArrayList<Integer>();
+
 
 void setup() {
   size(1000, 850);
@@ -21,7 +23,25 @@ void setup() {
                     "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "History",
                     "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi",
                     "Sport", "Thriller", "War", "Western"};
+  yearNoPic.add(1988);
+  yearNoPic.add(1990);
+  yearNoPic.add(1992);
+  yearNoPic.add(1993);
+  yearNoPic.add(1994);
+  yearNoPic.add(1996);
+  yearNoPic.add(1997);
+  yearNoPic.add(1998);
+  yearNoPic.add(2002);
+  yearNoPic.add(2004);
+  yearNoPic.add(2006);
+  yearNoPic.add(2007);
+  yearNoPic.add(2009);
+  yearNoPic.add(2010);
+  yearNoPic.add(2013);
+  yearNoPic.add(2014);
   
+  System.out.print(yearNoPic);
+    
   for(Movie movie : movies) {
     Integer currYear = Integer.parseInt(movie.year);
     float tempMoviesPerYear = moviesPerYear.get(currYear) == null ? 0 : moviesPerYear.get(currYear);
@@ -52,11 +72,17 @@ void setup() {
 void draw() {
   
   background(#EEEEDD);
+  fill(0,0,0);
+  textSize(48);
+  text("Movies in Turmoil?!", 50,100);
+ 
   x = 0;
   slider.update();
   
   Year yearToDraw = years.get(slider.getYear());
-  
+  if (!yearNoPic.contains(slider.getYear())){
+    image(yearToDraw.placeImage(slider.getYear()),350,610,width/3, height/3);
+  }
   genreColors = yearToDraw.getColors();
   
   yearToDraw.update(moviesPerYear.get(yearToDraw.year));

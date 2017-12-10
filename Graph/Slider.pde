@@ -3,6 +3,7 @@ public class Slider
     float x, y, width, height;
     float valueX = 0;
     float value; // change this one to type double if you need the extra precision
+
     
     Slider ( float xx, float yy, float ww, float hh ) 
     {
@@ -15,6 +16,8 @@ public class Slider
     
         // register it
         Interactive.add( this );
+        
+      
     }
     
     // called from manager
@@ -45,6 +48,11 @@ public class Slider
       textSize(18);
       fill(0,0,0);
       text(year, valueX-10, y-10);
+      //img= loadImage(currentEvents.get(year));
+      //image(img,x,y);
+      
+      
+      
       return year;
     }
 }
