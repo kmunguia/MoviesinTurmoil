@@ -13,7 +13,7 @@ protected ArrayList<Integer> yearNoPic = new ArrayList<Integer>();
 
 
 void setup() {
-  size(1000, 850);
+  size(1100, 850);
   pixelDensity(displayDensity());
   tableReader = new TableReader();
   movies = tableReader.loadData("IMDBdata.csv");
@@ -68,20 +68,30 @@ void setup() {
 }
 
 void draw() {
-  
   background(#EEEEDD);
-  fill(0,0,0);
-  textSize(48);
-  text("Movies in Turmoil?!", 50,100);
+  String info = "Explore around and see what has" + "\nhappened in the movie world" + "\nin the past 30 years";
+  textSize(20);
+  text(info, 30, 100);
+  
  
   x = 0;
   slider.update();
   
   Year yearToDraw = years.get(slider.getYear());
   if (!yearNoPic.contains(slider.getYear())){
-    image(yearToDraw.placeImage(slider.getYear()),(slider.getValueX())-width/7,610,width/3.5, height/3);
+    image(yearToDraw.placeImage(slider.getYear()),(slider.getValueX())-width/7,610,width/3.5, height/2.5);
   }
   genreColors = yearToDraw.getColors();
+  
+    //legend colors
+  genreColors = yearToDraw.getColors();
+  for (String key: genreColors.keySet()){
+  fill(genreColors.get(key));
+  rect(950,x+30,15,10);
+  textSize(12);
+  fill(0,0,0);
+  text(key,975, x+40);
+  x+=25;
   
   yearToDraw.update(moviesPerYear.get(yearToDraw.year));
   
@@ -89,16 +99,10 @@ void draw() {
   if(mouseOnGenre) {
     yearToDraw.updateAsMute(moviesPerYear.get(yearToDraw.year), selectedGenre);
   }
-  //legend
   
-  genreColors = yearToDraw.getColors();
-  for (String key: genreColors.keySet()){
-  fill(genreColors.get(key));
-  rect(895,x+30,15,10);
-  textSize(12);
   fill(0,0,0);
-  text(key,920, x+40);
-  x+=30;
+  textSize(48);
+  text("Movies in Turmoil?!", 30,65);
 }
 }
 
