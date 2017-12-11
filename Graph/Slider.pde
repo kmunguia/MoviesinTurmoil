@@ -43,6 +43,10 @@ public class Slider
         
     }
     
+    float getValueX() {
+      return valueX;
+    }
+    
     Integer getYear() {
       Integer year = round(map(valueX, x, x+width, 1986, 2017));
       textSize(18);

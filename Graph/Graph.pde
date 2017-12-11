@@ -39,8 +39,6 @@ void setup() {
   yearNoPic.add(2010);
   yearNoPic.add(2013);
   yearNoPic.add(2014);
-  
-  System.out.print(yearNoPic);
     
   for(Movie movie : movies) {
     Integer currYear = Integer.parseInt(movie.year);
@@ -81,7 +79,7 @@ void draw() {
   
   Year yearToDraw = years.get(slider.getYear());
   if (!yearNoPic.contains(slider.getYear())){
-    image(yearToDraw.placeImage(slider.getYear()),350,610,width/3, height/3);
+    image(yearToDraw.placeImage(slider.getYear()),(slider.getValueX())-width/7,610,width/3.5, height/3);
   }
   genreColors = yearToDraw.getColors();
   
@@ -91,7 +89,17 @@ void draw() {
   if(mouseOnGenre) {
     yearToDraw.updateAsMute(moviesPerYear.get(yearToDraw.year), selectedGenre);
   }
+  //legend
   
+  genreColors = yearToDraw.getColors();
+  for (String key: genreColors.keySet()){
+  fill(genreColors.get(key));
+  rect(895,x+30,15,10);
+  textSize(12);
+  fill(0,0,0);
+  text(key,920, x+40);
+  x+=30;
+}
 }
 
 String mouseOnGenre() {
