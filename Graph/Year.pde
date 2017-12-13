@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 class Year {
   final int year;
   HashMap<String, Integer> colors = new HashMap<String, Integer>();
@@ -52,8 +54,6 @@ class Year {
     colors.put("Comedy", color(255,153,51));// neon orange
     colors.put("Sci-Fi", color(77,121,255));//Sky Blue 
      
-  
-     
     for(int i = 0; i < names.length; i++) {
       genres.add(new Genre(names[i], 0f, 0f, colors.get(names[i])));
     }
@@ -63,7 +63,10 @@ class Year {
   public HashMap getColors(){
     return this.colors;
   }
-  
+  public ArrayList<Genre> getGenres(){
+    return this.genres;
+  }
+    
   void update(float numMovies) {
     float theta = 0;
     for(Genre genre : genres) {
@@ -71,18 +74,32 @@ class Year {
       genre.update(width/2, 2*height/6, theta, theta + arc_length, year, false);
       theta = theta + arc_length;
     }
+    
   }
   
   void updateAsMute(float numMovies, String label) {
+    //int index = genres.indexOf(label);
+    //System.out.println(index);
     float theta = 0;
     for(Genre genre : genres) {
       float arc_length = map(genre.numMovies, 0f, numMovies, 0, 2 * (float) Math.PI);
       genre.update(width/2, 2*height/6, theta, theta + arc_length, year, genre.name.equals(label) ? false : true);
       theta = theta + arc_length;
-    }
+      
+      if(genre.name.equals(label)){
+        DecimalFormat df = new DecimalFormat("###.##");
+        fill(#111111);
+         textSize(18);
+          text("Average Gross: $" + df.format(genre.totalGross), mouseX, mouseY+20);
+          text("Number of Movies:" + (int)genre.numMovies, mouseX, mouseY+40);
+      }
+    }   
     fill(#111111);
     textSize(32);
     text(label, mouseX, mouseY);
+    
+    //text(genre.totalGross, mouseX, mouseY+20);
+
   }
   PImage placeImage(int y){
     return currentEvents.get(y);
