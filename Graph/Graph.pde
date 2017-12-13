@@ -68,6 +68,9 @@ void setup() {
 //}
 void draw() {
   background(#EEEEDD);
+   fill(0,0,0);
+  textSize(48);
+  text("Movies in Turmoil?!", 30,65);
   String info = "Explore around and see what has" + "\nhappened in the movie world" + "\nin the past 30 years";
   textSize(20);
   text(info, 30, 100);
@@ -93,21 +96,23 @@ void draw() {
   x+=25;
   
   yearToDraw.update(moviesPerYear.get(yearToDraw.year));
-
-
-
+  //String selectedGenre = mouseOnGenre();
+  
+  //if(mouseOnGenre) {
+  //  yearToDraw.updateAsMute(moviesPerYear.get(yearToDraw.year), selectedGenre);
+  //   textSize(20);
+     
+  //}
+  
+}
   String selectedGenre = mouseOnGenre();
   
   if(mouseOnGenre) {
     yearToDraw.updateAsMute(moviesPerYear.get(yearToDraw.year), selectedGenre);
      textSize(20);
-     
+     fill(#111111);
   }
-  
-  fill(0,0,0);
-  textSize(48);
-  text("Movies in Turmoil?!", 30,65);
-}
+  fill(#111111);
 }
 String mouseOnGenre() {
   color rawC = get(mouseX, mouseY);

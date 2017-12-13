@@ -46,7 +46,8 @@ class Year {
     colors.put("Mystery",color(0,102,102));// blue green
     colors.put("Horror", color(153,0,0));// Eggplant
     colors.put("Sport",color(106,203,197));// light green blue
-    colors.put("War", color(0,25,51)); // Dark green
+    //colors.put("War", color(0,25,51)); // Dark green
+    colors.put("War", color(206, 152, 57)); //golden yellow
     colors.put("Thriller",color(76,0,153)); //purple
     colors.put("Music", color(255,0,255)); //magenta
     colors.put("Musical", color(192,192,192)); //grey
@@ -90,7 +91,7 @@ class Year {
         DecimalFormat df = new DecimalFormat("###.##");
         fill(#111111);
          textSize(18);
-          text("Average Gross: $" + df.format(genre.totalGross), mouseX, mouseY+20);
+          text("Average Gross Revenue: $" + df.format(genre.totalGross), mouseX, mouseY+20);
           text("Number of Movies:" + (int)genre.numMovies, mouseX, mouseY+40);
       }
     }   
