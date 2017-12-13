@@ -6,7 +6,6 @@ HashMap<Integer, Year> years;
 HashMap<Integer, Float> moviesPerYear;
 HashMap<String, Integer> genreColors;
 protected ArrayList<Integer> yearNoPic = new ArrayList<Integer>();
-ArrayList<Genre> genres2;
 
 Integer x = 0;
 Boolean mouseOnGenre = false;
@@ -19,7 +18,6 @@ void setup() {
   movies = tableReader.loadData("IMDBdata.csv");
   years = new HashMap<Integer, Year>();
   moviesPerYear = new HashMap<Integer, Float>();
-  ArrayList<String> topTempMovies = new ArrayList<String>();
   
   yearNoPic.add(1988);
   yearNoPic.add(1990);
@@ -53,7 +51,6 @@ void setup() {
     for(int i = 0; i < genres.size(); i++) {
       Genre genre = genres.get(i);
       if(movie.hasGenre(genre.name)){
-        topTempMovies.add(movie.title);
         moviesPerYear.put(currYear, ++tempMoviesPerYear);
         genre.numMovies += 1f;
         genre.totalGross += movie.gross;
@@ -79,15 +76,12 @@ void draw() {
   slider.update();
   
   Year yearToDraw = years.get(slider.getYear()); //current year that the slider is one 
-  //System.out.println(yearToDraw);
+
   if (!yearNoPic.contains(slider.getYear())){
     image(yearToDraw.placeImage(slider.getYear()),(slider.getValueX())-width/7,610,width/3.5, height/2.5);
   }
   genreColors = yearToDraw.getColors();
   
-  //for (Genre genre: genres2){
-  //System.out.println(genre.name);
-  //}
  //legend colors
   genreColors = yearToDraw.getColors();
   for (String key: genreColors.keySet()){
@@ -99,20 +93,15 @@ void draw() {
   x+=25;
   
   yearToDraw.update(moviesPerYear.get(yearToDraw.year));
-  //System.out.println(moviesPerYear.get(yearToDraw.year));
-  genres2= yearToDraw.getGenres();
-  //System.out.println(genres2);
+
+
 
   String selectedGenre = mouseOnGenre();
-  //System.out.println(selectedGenre);
-  //ndex= genres2.indexOf(selectedGenre);
-  //System.out.println(index);
+  
   if(mouseOnGenre) {
     yearToDraw.updateAsMute(moviesPerYear.get(yearToDraw.year), selectedGenre);
      textSize(20);
-     //fill(#458B74);
-     //textSize(24);
-     //text(genres2.get(genres2.indexOf(label)).totalGross, mouseX, mouseY+20);
+     
   }
   
   fill(0,0,0);

@@ -97,9 +97,6 @@ class Year {
     fill(#111111);
     textSize(32);
     text(label, mouseX, mouseY);
-    
-    //text(genre.totalGross, mouseX, mouseY+20);
-
   }
   PImage placeImage(int y){
     return currentEvents.get(y);

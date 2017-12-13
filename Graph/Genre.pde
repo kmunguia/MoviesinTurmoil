@@ -3,17 +3,14 @@ class Genre {
    float totalGross;
    float numMovies;
    color colour;
-   ArrayList<String> topThree;
+
    
    public Genre(String name, float totalGross, float numMovies, color colour) {
      this.name = name;
      this.totalGross = totalGross;
      this.numMovies = numMovies;
      this.colour = colour;
-     //this.topThree = topThree;
-   }
-   float getNumMovies(String genre){
-     return numMovies ;
+
    }
    
    void update(int x, int y, float startTheta, float endTheta, int year, boolean muted) {
