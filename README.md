@@ -1,7 +1,16 @@
 # MoviesinTurmoil
 Capstone Project 
 
-## Inspiration
+you can just open it and click play but you will need to install Guido first. 
 
-We wanted to center our project around film. Seeing the over done analyzation of the diversity in Hollywood, we decided it would be a better to study the different genre popularity. the 
+## downloading Guido library
 
+Guido is a library we used that helps to build the slider object you see in our vis. 
+
+### To download:
+
+For reference:
+
+https://github.com/fjenett/Guido
+
+In processing for the mac, in the sketch tab, there is a command that says import library. When you click on that it will open a window and you will just type Guido and it will appear. CLick on install in the bottom and it will install it. You will need to restart processing after and then open our file and click play. 
