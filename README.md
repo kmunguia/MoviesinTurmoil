@@ -1,6 +1,8 @@
 # MoviesinTurmoil
 Capstone Project 
 
+you can just open it and click play but you will need to install Guido first. 
+
 ## downloading Guido library
 
 Guido is a library we used that helps to build the slider object you see in our vis. 
