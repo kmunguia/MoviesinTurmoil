@@ -91,8 +91,8 @@ class Year {
         DecimalFormat df = new DecimalFormat("###.##");
         fill(#111111);
          textSize(18);
-          text("Average Gross Revenue: $" + df.format(genre.totalGross), mouseX, mouseY+20);
-          text("Number of Movies:" + (int)genre.numMovies, mouseX, mouseY+40);
+          text("Average Gross Revenue: $" + df.format(genre.totalGross/genre.numMovies) + "M", 0.15*width, 0.55*height);
+          text("Number of Movies:" + (int)genre.numMovies, 0.15*width, 0.55*height+25);
       }
     }   
     fill(#111111);

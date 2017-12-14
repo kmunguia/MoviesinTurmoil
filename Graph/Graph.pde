@@ -62,7 +62,6 @@ void setup() {
   }
   
   Interactive.make(this);
-  
   slider = new Slider(0.15*width, 0.69*height, 0.7*width, 15);
 }
 //}
@@ -71,8 +70,12 @@ void draw() {
    fill(0,0,0);
   textSize(48);
   text("Movies in Turmoil?!", 30,65);
-  String info = "Explore around and see what has" + "\nhappened in the movie world" + "\nin the past 30 years";
-  textSize(20);
+  String info = "Explore around and see what has happened" +
+  "\nin the movie world in the past 30 years." + 
+  "\nThe radius represents genre's revenue." +
+  "\nThe width of the arc represents the mount of movie made." +
+  "\nFeel free to hover and get more information!";
+  textSize(13);
   text(info, 30, 100);
   
   x = 0;
